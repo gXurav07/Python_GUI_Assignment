@@ -25,6 +25,8 @@ def fileClick(clicked, dataset, segmentor):
     global segimg   #stores the image with segmentation masks
     fname = filedialog.askopenfilename(initialdir=r'data\imgs', title='select file', filetypes=[('jpg files', '*.jpg')])
 
+    
+
 
     if fname == '':
         return
@@ -33,7 +35,10 @@ def fileClick(clicked, dataset, segmentor):
     if e.get()!='': e.delete(0,5)
     st = filename[-5:]
     e.insert(0,st)
-    x = int(filename[-5])
+    x = int(st[0])
+
+    print('********',fname,filename,x)
+
 
     print(dataset.getitem(x),"\n\n\n")
 

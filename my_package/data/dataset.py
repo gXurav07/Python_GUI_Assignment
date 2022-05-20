@@ -36,11 +36,11 @@ class Dataset(object):
 
         dict = {}
 
-        loc = self.dir + '\\data\\' + datapoint['img_fn'].replace('/','\\')
+        loc = self.dir + '/data/' + datapoint['img_fn']
         loc = r"{}".format(loc)
         image = Image.open(loc)
 
-        seg_loc = self.dir + '\\data\\' +  datapoint['png_ann_fn'].replace('/','\\')
+        seg_loc = self.dir + '/data/' +  datapoint['png_ann_fn']
         seg_loc = r"{}".format(seg_loc)
         seg_image = Image.open(seg_loc)
 
