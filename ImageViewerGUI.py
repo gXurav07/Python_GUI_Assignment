@@ -37,7 +37,6 @@ def fileClick(clicked, dataset, segmentor):
     e.insert(0,st)
     x = int(st[0])
 
-    print('********',fname,filename,x)
 
 
     print(dataset.getitem(x),"\n\n\n")
@@ -47,13 +46,16 @@ def fileClick(clicked, dataset, segmentor):
     ar = np.array(image) / 255
     ar = ar.transpose(2, 0, 1)
     prediction_list = segmentor (ar)
-    plot_visualization(prediction_list, ar.transpose(1, 2, 0).copy()
-                       , r'Outputs/segmentation.jpg', 'segmentation')
+
+    bbox_dir = 'Outputs/bbox' + st
+    seg_dir = 'Outputs/segmentation' + st
 
     plot_visualization(prediction_list, ar.transpose(1, 2, 0).copy()
-                       , r'Outputs/bbox.jpg', 'bounding_box')
-    bbox_dir = r'Outputs/bbox.jpg'
-    seg_dir = r'Outputs/segmentation.jpg'
+                       , seg_dir, 'segmentation')
+
+    plot_visualization(prediction_list, ar.transpose(1, 2, 0).copy()
+                       , bbox_dir, 'bounding_box')
+
 
     segimg = ImageTk.PhotoImage(Image.open(seg_dir))
     bboximg = ImageTk.PhotoImage(Image.open(bbox_dir))
