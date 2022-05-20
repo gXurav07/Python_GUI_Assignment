@@ -1,7 +1,6 @@
 # Imports
 from random import randrange
 
-import Image
 
 
 class CropImage(object):
