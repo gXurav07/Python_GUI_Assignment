@@ -23,7 +23,7 @@ def fileClick(clicked, dataset, segmentor):
     global img
     global bboximg   #stores the image with bounding boxes
     global segimg   #stores the image with segmentation masks
-    fname = filedialog.askopenfilename(initialdir=r'data\imgs', title='select file', filetypes=[('jpg files', '*.jpg')])
+    fname = filedialog.askopenfilename(initialdir=r'data/imgs', title='select file', filetypes=[('jpg files', '*.jpg')])
 
     
 
@@ -48,21 +48,21 @@ def fileClick(clicked, dataset, segmentor):
     ar = ar.transpose(2, 0, 1)
     prediction_list = segmentor (ar)
     plot_visualization(prediction_list, ar.transpose(1, 2, 0).copy()
-                       , r'Outputs\segmentation.jpg', 'segmentation')
+                       , r'Outputs/segmentation.jpg', 'segmentation')
 
     plot_visualization(prediction_list, ar.transpose(1, 2, 0).copy()
-                       , r'Outputs\bbox.jpg', 'bounding_box')
-    bbox_dir = r'Outputs\bbox.jpg'
-    seg_dir = r'Outputs\segmentation.jpg'
+                       , r'Outputs/bbox.jpg', 'bounding_box')
+    bbox_dir = r'Outputs/bbox.jpg'
+    seg_dir = r'Outputs/segmentation.jpg'
 
     segimg = ImageTk.PhotoImage(Image.open(seg_dir))
     bboximg = ImageTk.PhotoImage(Image.open(bbox_dir))
 
     img_label = Label(image=img)   # label to display the original image
-    img_label.grid(row=1, column=0,columnspan=6)
+    img_label.grid(row=1, column=0,columnspan=2)
     tx = Label(root, text='Original Image', font=(
         'Calibri', 11, 'bold'), height=1, width=50, background="green", foreground="white")
-    tx.grid(row=2, column=0,columnspan=6, pady=5)
+    tx.grid(row=2, column=0,columnspan=2, pady=5)
     process(clicked)
     return
 
@@ -85,16 +85,16 @@ def process(clicked):
         return
     if clicked.get()=='Segmentation':
         primg_label = Label(image = segimg)   # label to display the image with segmentation mask
-        primg_label.grid(row=1 ,column=6,padx = (0,45))
+        primg_label.grid(row=1 ,column=3,columnspan=3, padx = (0,45))
         tx = Label(root, text='Image with Segmentation masks', font=(
             'Calibri', 11, 'bold'), height=1, width=50, background="green", foreground="white")
-        tx.grid(row=2, column=6, pady=5)
+        tx.grid(row=2, column=3,columnspan=3, pady=5,padx=(0,41))
     else:
         primg_label = Label(image = bboximg) # label to display the image with bounding boxes
-        primg_label.grid(row=1 ,column=6,padx = (0,45))
+        primg_label.grid(row=1 ,column=3,columnspan=3,padx = (0,45))
         tx = Label(root, text='Image with Bounding Boxes', font=(
             'Calibri', 11, 'bold'), height=1, width=50, background="green", foreground="white")
-        tx.grid(row=2, column=6, pady=5)
+        tx.grid(row=2, column=3,columnspan=3, pady=5)
 
 
 ####### CODE REQUIRED (START) #######
@@ -129,20 +129,20 @@ if __name__ == '__main__':
     clicked = StringVar()
     clicked.set(options[0])
 
-    e = Entry(root, width=70)
+    e = Entry(root, width=50)
     e.grid(row=0, column=0,ipady = 3,padx=(30,5))
 
     ####### CODE REQUIRED (START) #######
     # Declare the file browsing button
     button = Button(root ,text='Choose File' ,borderwidth=2,bg= '#bcc0c4',command =lambda :fileClick(clicked,dataset,segmentor))
-    button.grid(row=0 ,column=1,padx = 5, pady = 3,ipadx=2,ipady=2)
+    button.grid(row=0 ,column=1,padx = 4, pady = 3,ipadx=2,ipady=2)
     ####### CODE REQUIRED (END) #######
 
     ####### CODE REQUIRED (START) #######
     # Declare the drop-down button
     drop = OptionMenu(root, clicked, *options)
     drop.config(bg= '#bcc0c4')
-    drop.grid(row=0, column=2,pady = 3,padx=(0,5),ipadx=2,ipady=2)
+    drop.grid(row=0, column=2,pady = 3,padx=(0,4),ipadx=2,ipady=2,sticky=W)
 
  
 
@@ -152,7 +152,7 @@ if __name__ == '__main__':
 
     # This is a `Process` button, check out the sample video to know about its functionality
     myButton = Button(root, text="Process",borderwidth=2,bg= '#bcc0c4', pady = 3, command=lambda: process(clicked))
-    myButton.grid(row=0, column=3,ipadx=2,ipady=0.5,padx=(1,15))
+    myButton.grid(row=0, column=3,ipadx=2,ipady=0.5,padx=(1,15),sticky=W)
 
 ####### CODE REQUIRED (START) ####### (1 line)
     root.mainloop()
