@@ -139,7 +139,7 @@ if __name__ == '__main__':
     drop.config(bg= '#bcc0c4')
     drop.grid(row=0, column=2,pady = 3,padx=(0,5),ipadx=2,ipady=2)
 
-
+ 
 
 
 
