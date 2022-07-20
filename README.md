@@ -14,7 +14,7 @@ https://youtu.be/zDNLTnqvjKo
 ## Implementation Details
 - For this project, our professor gave us a Machine Learning model, and our task was to use this  
   model and create an application that performs many exciting tasks using this model.
-- During the first half of the project, I created a python package containing many image  
+- During the first half of this project, I created a python package containing many image  
   manipulatory modules.
 - One of the modules named 'plot_visualiztion' is the main focus of this project. This module works 
   in unison with the ML model to perform all the functionalities of our application.
